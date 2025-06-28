@@ -5,6 +5,7 @@ export interface Person {
   id: string
   name: string
   profit: number
+  month: string
 }
 
 export interface PersonWithResult extends Person {
@@ -28,10 +29,16 @@ interface CommissionState {
   reset: () => void
 }
 
+const getCurrentMonth = () => {
+  const now = new Date()
+  return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`
+}
+
 const defaultPerson = (): Person => ({
   id: Math.random().toString(36).slice(2),
   name: '',
   profit: 0,
+  month: getCurrentMonth(),
 })
 
 export const useCommissionStore = create<CommissionState>()(

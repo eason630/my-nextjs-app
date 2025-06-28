@@ -80,6 +80,16 @@ export default function CommissionPage() {
 									/>
 								</div>
 								<div className="flex-1">
+									<Label htmlFor={`month-${person.id}`}>月份</Label>
+									<Input
+										type="month"
+										id={`month-${person.id}`}
+										value={person.month}
+										onChange={e => updatePerson(person.id, { month: e.target.value })}
+										className="mt-1"
+									/>
+								</div>
+								<div className="flex-1">
 									<Label htmlFor={`profit-${person.id}`}>利润（元）</Label>
 									<Input
 										id={`profit-${person.id}`}
@@ -138,6 +148,7 @@ export default function CommissionPage() {
 						<TableHeader>
 							<TableRow>
 								<TableHead>姓名</TableHead>
+								<TableHead>月份</TableHead>
 								<TableHead>利润</TableHead>
 								<TableHead>基本工资</TableHead>
 								<TableHead>提成</TableHead>
@@ -151,6 +162,7 @@ export default function CommissionPage() {
 							{peopleWithResult.map((p, idx) => (
 								<TableRow key={p.id}>
 									<TableCell>{p.name || <span className="text-gray-400">未填写</span>}</TableCell>
+									<TableCell>{p.month}</TableCell>
 									<TableCell>{p.profit}</TableCell>
 									<TableCell>{p.result.baseSalary}</TableCell>
 									<TableCell>{p.result.commission.toFixed(2)}</TableCell>
